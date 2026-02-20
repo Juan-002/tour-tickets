@@ -47,18 +47,17 @@ export default function MyTicketsPage() {
           "radial-gradient(ellipse 60% 50% at 20% 30%, rgba(196,144,62,0.12) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 80% 70%, rgba(34,87,45,0.25) 0%, transparent 60%)",
       }}
     >
-      <div className="max-w-275 mx-auto px-15 pb-24">
+      <div className="pb-24 mx-auto max-w-275 px-15">
 
         {/* ── HEADER ──────────────────────────────────────────── */}
         <header className="pt-16 pb-12">
-            <p className=" text-9xl text-blue-900">Prueba que pasa</p>
-          <p className="section-label mb-4 anim-fade-up">✦ Tu historial</p>
-          <div className="flex items-end justify-between flex-wrap gap-6">
+          <p className="mb-4 section-label anim-fade-up">✦ Tu historial</p>
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-black leading-none anim-fade-up-2">
               Mis <span className="italic text-[#C4903E]">tiquetes</span>
             </h1>
             {!loading && !error && (
-              <p className="font-sans text-sm text-white/40 tracking-wide anim-fade-up-3">
+              <p className="font-sans text-sm tracking-wide text-white/40 anim-fade-up-3">
                 {tickets.length} {tickets.length === 1 ? "compra" : "compras"} realizadas
               </p>
             )}
@@ -107,7 +106,7 @@ export default function MyTicketsPage() {
                   {s.icon}
                 </div>
                 <div>
-                  <p className="font-sans text-xs text-white/40 tracking-widest uppercase mb-1">{s.label}</p>
+                  <p className="mb-1 font-sans text-xs tracking-widest uppercase text-white/40">{s.label}</p>
                   <p className="font-serif text-2xl font-bold text-[#C4903E]">{s.value}</p>
                 </div>
               </div>
@@ -117,15 +116,15 @@ export default function MyTicketsPage() {
 
         {/* ── LOADING ─────────────────────────────────────────── */}
         {loading && (
-          <div className="flex flex-col items-center justify-center py-32 gap-6">
+          <div className="flex flex-col items-center justify-center gap-6 py-32">
             <div className="w-10 h-10 border border-[#C4903E]/30 border-t-[#C4903E] rounded-full animate-spin" />
-            <p className="font-sans text-sm text-white/30 tracking-widest uppercase">Cargando tiquetes...</p>
+            <p className="font-sans text-sm tracking-widest uppercase text-white/30">Cargando tiquetes...</p>
           </div>
         )}
 
         {/* ── ERROR ───────────────────────────────────────────── */}
         {error && (
-          <div className="flex items-center gap-3 bg-red-500/8 border border-red-500/20 text-red-400 font-sans text-sm p-5 mb-8">
+          <div className="flex items-center gap-3 p-5 mb-8 font-sans text-sm text-red-400 border bg-red-500/8 border-red-500/20">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
@@ -135,7 +134,7 @@ export default function MyTicketsPage() {
 
         {/* ── EMPTY ───────────────────────────────────────────── */}
         {!loading && !error && tickets.length === 0 && (
-          <div className="flex flex-col items-center py-32 gap-5 text-center anim-fade-up">
+          <div className="flex flex-col items-center gap-5 py-32 text-center anim-fade-up">
             <div className="w-20 h-20 border border-[#C4903E]/20 flex items-center justify-center">
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(196,144,62,0.4)" strokeWidth="1">
                 <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
@@ -143,12 +142,12 @@ export default function MyTicketsPage() {
               </svg>
             </div>
             <div>
-              <p className="font-serif text-2xl font-bold mb-2">Aún no tienes tiquetes</p>
-              <p className="font-sans text-sm text-white/35 leading-relaxed">
+              <p className="mb-2 font-serif text-2xl font-bold">Aún no tienes tiquetes</p>
+              <p className="font-sans text-sm leading-relaxed text-white/35">
                 Explora nuestros tours disponibles y reserva<br />tu primera experiencia.
               </p>
             </div>
-            <a href="/tours" className="btn-primary mt-4" style={{ padding: "12px 32px" }}>
+            <a href="/tours" className="mt-4 btn-primary" style={{ padding: "12px 32px" }}>
               Explorar tours
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -182,9 +181,9 @@ export default function MyTicketsPage() {
                   {/* Image thumbnail */}
                   <div className="w-28 shrink-0 relative overflow-hidden bg-linear-to-br from-[#1a3320] to-[#2d5a3d] hidden sm:block">
                     {tour?.imageUrl ? (
-                      <img src={tour.imageUrl} alt={tour?.title} className="w-full h-full object-cover" />
+                      <img src={tour.imageUrl} alt={tour?.title} className="object-cover w-full h-full" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center">
+                      <div className="flex items-center justify-center w-full h-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(196,144,62,0.4)" strokeWidth="1">
                           <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
                           <polyline points="9 22 9 12 15 12 15 22"/>
@@ -194,13 +193,13 @@ export default function MyTicketsPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="flex flex-1 items-center gap-6 px-6 py-5">
+                  <div className="flex items-center flex-1 gap-6 px-6 py-5">
                     {/* Tour info */}
                     <div className="flex-1 min-w-0">
                       <p className="font-sans text-[0.68rem] text-white/35 tracking-widest uppercase mb-1">
                         {date}
                       </p>
-                      <h3 className="font-serif text-lg font-bold leading-tight mb-1 truncate">
+                      <h3 className="mb-1 font-serif text-lg font-bold leading-tight truncate">
                         {tour?.title ?? "Tour"}
                       </h3>
                       <p className="font-sans text-xs text-white/40">
@@ -210,7 +209,7 @@ export default function MyTicketsPage() {
                     </div>
 
                     {/* Quantity */}
-                    <div className="text-center shrink-0 hidden md:block">
+                    <div className="hidden text-center shrink-0 md:block">
                       <p className="font-sans text-[0.65rem] text-white/30 tracking-widest uppercase mb-1">Personas</p>
                       <p className="font-serif text-2xl font-bold text-[#F5EDD8]">{ticket.quantity}</p>
                     </div>

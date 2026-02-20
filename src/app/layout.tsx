@@ -11,6 +11,14 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen bg-[#0D1B0F] text-[#F5EDD8] overflow-x-hidden font-sans">
         
         <div className="grain bg-mesh">
