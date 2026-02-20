@@ -11,6 +11,7 @@ const registerSchema = z.object({
   password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
 });
 
+
 export async function POST(req: NextRequest) {
   try {
     const body   = await req.json();
