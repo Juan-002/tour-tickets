@@ -10,6 +10,7 @@ const loginSchema = z.object({
   password: z.string().min(1, "La contraseña es requerida"),
 });
 
+
 export async function POST(req: NextRequest) {
   try {
     const body   = await req.json();
