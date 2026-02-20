@@ -28,7 +28,7 @@ export default function MyTicketsClient({ userId, userName }: MyTicketsClientPro
         if (!res.ok) throw new Error(json.error ?? "Error al cargar tiquetes");
         setTickets(json.data ?? []);
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Error desconocido");
+        setError(e instanceof Error ? e.message : "Error se desconoce el error");
       } finally {
         setLoading(false);
       }
@@ -133,6 +133,7 @@ export default function MyTicketsClient({ userId, userName }: MyTicketsClientPro
         )}
 
         {/* Ticket list */}
+        
         {!loading && !error && tickets.length > 0 && (
           <div className="flex flex-col gap-3 sm:gap-4">
             {tickets.map((ticket: any) => {
