@@ -1,5 +1,5 @@
 "use client";
-
+// pagina de registro, similar a login pero con campos adicionales 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 

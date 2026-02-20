@@ -1,5 +1,5 @@
 "use client";
-
+// layaout público que envuelve las páginas de tours, checkout y my-tickets
 import { useRouter, usePathname } from "next/navigation";
 
 import { SessionPayload } from "@/lib/auth";
