@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  tickets   Ticket[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tour {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  price         Float
+  imageUrl      String
+  availableSlots Int
+  totalSlots    Int
+  location      String
+  duration      String
+  status        TourStatus @default(ACTIVE)
+  tickets       Ticket[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Ticket {
+  id          String       @id @default(cuid())
+  userId      String
+  tourId      String
+  quantity    Int
+  totalPrice  Float
+  status      TicketStatus @default(PENDING)
+  user        User         @relation(fields: [userId], references: [id])
+  tour        Tour         @relation(fields: [tourId], references: [id])
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TourStatus {
+  ACTIVE
+  INACTIVE
+  SOLDOUT
+}
+
+enum TicketStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
