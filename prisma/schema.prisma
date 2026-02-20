@@ -19,19 +19,25 @@ model User {
 }
 
 model Tour {
-  id            String   @id @default(cuid())
-  title         String
-  description   String
-  price         Float
-  imageUrl      String
+  id             String     @id @default(cuid())
+  title          String
+  description    String
+  price          Float
+  imageUrl       String
   availableSlots Int
-  totalSlots    Int
-  location      String
-  duration      String
-  status        TourStatus @default(ACTIVE)
-  tickets       Ticket[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  totalSlots     Int
+  location       String
+  duration       String
+  status         TourStatus @default(ACTIVE)
+  tickets        Ticket[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+    petsAllowed    Boolean    @default(false)
+  kidsAllowed    Boolean    @default(true)
+  hasTransport   Boolean    @default(false)
+  hasLodging     Boolean    @default(false)
+  lodgingType    String?    
+  nights         Int        @default(0)
 }
 
 model Ticket {

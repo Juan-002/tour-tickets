@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Tour" ADD COLUMN     "hasLodging" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "hasTransport" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "kidsAllowed" BOOLEAN NOT NULL DEFAULT true,
+ADD COLUMN     "lodgingType" TEXT,
+ADD COLUMN     "nights" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "petsAllowed" BOOLEAN NOT NULL DEFAULT false;

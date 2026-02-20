@@ -13,19 +13,25 @@ export interface IUser {
 }
 
 export interface ITour {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  imageUrl: string;
+  id:             string;
+  title:          string;
+  description:    string;
+  price:          number;
+  imageUrl:       string;
   availableSlots: number;
-  totalSlots: number;
-  location: string;
-  duration: string;
-  status: TourStatus;
-  createdAt: Date;
+  totalSlots:     number;
+  location:       string;
+  duration:       string;
+  status:         TourStatus;
+  createdAt:      Date;
+  updatedAt:      Date;
+  petsAllowed:    boolean;
+  kidsAllowed:    boolean;
+  hasTransport:   boolean;
+  hasLodging:     boolean;
+  lodgingType:    string | null;
+  nights:         number;
 }
-
 export interface ITicket {
   id: string;
   userId: string;
@@ -40,13 +46,19 @@ export interface ITicket {
 
 // DTOs para formularios
 export interface CreateTourDTO {
-  title: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  totalSlots: number;
-  location: string;
-  duration: string;
+  title:        string;
+  description:  string;
+  price:        number;
+  imageUrl:     string;
+  totalSlots:   number;
+  location:     string;
+  duration:     string;
+  nights:       number;
+  petsAllowed:  boolean;
+  kidsAllowed:  boolean;
+  hasTransport: boolean;
+  hasLodging:   boolean;
+  lodgingType?: string;
 }
 
 export interface CreateTicketDTO {

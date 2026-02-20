@@ -14,15 +14,16 @@ const statusLabel: Record<TourStatus, { text: string; color: string }> = {
   INACTIVE: { text: "Inactivo",   color: "rgba(245,237,216,0.3)" },
 };
 
-const DESC_LIMIT  = 120;
-const TITLE_LIMIT = 25;
-const LOCATION_LIMIT = 17;
+const DESC_LIMIT     = 120;
+const TITLE_LIMIT    = 25;
+const LOCATION_LIMIT = 20;
+const TOUR_DURATION_LIMIT = 11;
 
 export default function TourCard({ tour }: TourCardProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const status        = statusLabel[tour.status];
-  const isSoldOut     = tour.status === TourStatus.SOLDOUT;
+  const status    = statusLabel[tour.status];
+  const isSoldOut = tour.status === TourStatus.SOLDOUT;
 
   // Título
   const isLongTitle    = tour.title.length > TITLE_LIMIT;
@@ -36,13 +37,18 @@ export default function TourCard({ tour }: TourCardProps) {
     ? tour.description.slice(0, DESC_LIMIT).trimEnd() + "..."
     : tour.description;
 
-    const isLongLocation    = tour.location.length > LOCATION_LIMIT;
-    const displayedLocation = isLongLocation && !expanded
-      ? tour.location.slice(0, LOCATION_LIMIT).trimEnd() + "..."
-      : tour.location;
+  // Ubicación
+  const isLongLocation    = tour.location.length > LOCATION_LIMIT;
+  const displayedLocation = isLongLocation && !expanded
+    ? tour.location.slice(0, LOCATION_LIMIT).trimEnd() + "..."
+    : tour.location;
 
-  // Mostrar botón si cualquiera de los dos es largo
-  const showToggle = isLongTitle || isLong || isLongLocation;
+  const isLongDuration    = tour.duration.length > TOUR_DURATION_LIMIT;
+  const displayedDuration = isLongDuration && !expanded
+    ? tour.duration.slice(0, TOUR_DURATION_LIMIT).trimEnd() + "..."
+    : tour.duration;
+
+  const showToggle = isLongTitle || isLong || isLongLocation || isLongDuration;
 
   return (
     <article
@@ -78,11 +84,10 @@ export default function TourCard({ tour }: TourCardProps) {
         className="tour-list-card__body"
         style={{ display: "flex", flexDirection: "column", flex: 1 }}
       >
-      <p className="tour-list-card__meta">
-        📍 {displayedLocation} &nbsp;·&nbsp; ⏱ {tour.duration}
-      </p>
+        <p className="tour-list-card__meta">
+          📍 {displayedLocation} &nbsp;·&nbsp; ⏱ {displayedDuration} 
+        </p>
 
-        {/* Título con truncado */}
         <h3 className="font-display tour-list-card__title">
           {displayedTitle}
         </h3>
@@ -131,22 +136,33 @@ export default function TourCard({ tour }: TourCardProps) {
             </p>
             <p className="font-display tour-list-card__price">
               ${tour.price.toLocaleString("es-CO")}
-              <span className="tour-list-card__per"> / persona</span>
+              <span className="tour-list-card__per"> | <strong>P / P</strong> </span>
             </p>
           </div>
 
-          <a
-            href={isSoldOut ? "#" : `/checkout?tourId=${tour.id}`}
-            className={isSoldOut ? "btn-ghost" : "btn-primary"}
-            style={{
-              padding:       "10px 20px",
-              fontSize:      "0.78rem",
-              pointerEvents: isSoldOut ? "none" : "auto",
-              opacity:       isSoldOut ? 0.45 : 1,
-            }}
-          >
-            {isSoldOut ? "Agotado" : "Comprar"}
-          </a>
+          {/* Botones */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-end" }}>
+            <a
+              href={`/tours/${tour.id}`}
+              className="btn-ghost"
+              style={{ padding: "6px 14px", fontSize: "0.75rem", textAlign: "center", whiteSpace: "nowrap" }}
+            >
+              Ver detalles
+            </a>
+            <a
+              href={isSoldOut ? "#" : `/checkout?tourId=${tour.id}`}
+              className={isSoldOut ? "btn-ghost" : "btn-primary"}
+              style={{
+                padding:       "8px 16px",
+                fontSize:      "0.75rem",
+                pointerEvents: isSoldOut ? "none" : "auto",
+                opacity:       isSoldOut ? 0.45 : 1,
+                textAlign:     "center",
+              }}
+            >
+              {isSoldOut ? "Agotado" : "Comprar"}
+            </a>
+          </div>
         </div>
       </div>
     </article>

@@ -2,15 +2,20 @@
 import { z } from "zod";
 
 export const createTourSchema = z.object({
-  title: z.string().min(3, "El título debe tener al menos 3 caracteres"),
-  description: z.string().min(10, "La descripción debe tener al menos 10 caracteres"),
-  price: z.number().positive("El precio debe ser mayor a 0"),
-  imageUrl: z.string().url("Debe ser una URL válida"),
-  totalSlots: z.number().int().positive("Los cupos deben ser mayor a 0"),
-  location: z.string().min(3, "La ubicación es requerida"),
-  duration: z.string().min(2, "La duración es requerida"),
+  title:        z.string().min(3).max(100),
+  description:  z.string().min(10).max(1000),
+  price:        z.number().positive(),
+  imageUrl:     z.string().url().or(z.literal("")),
+  totalSlots:   z.number().int().positive().max(500),
+  location:     z.string().min(3).max(100),
+  duration:     z.string().min(2).max(50),
+  nights:       z.number().int().min(0).default(0),
+  petsAllowed:  z.boolean().default(false),
+  kidsAllowed:  z.boolean().default(true),
+  hasTransport: z.boolean().default(false),
+  hasLodging:   z.boolean().default(false),
+  lodgingType:  z.string().optional(),
 });
-
 export const createTicketSchema = z.object({
   tourId: z.string().cuid("Tour inválido"),
   userId: z.string().cuid("Usuario inválido"),

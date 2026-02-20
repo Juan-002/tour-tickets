@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [password, setPassword]      = useState("");
   const [error, setError]            = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
-
+  const [showPassword, setShowPassword] = useState(false);
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -84,14 +84,36 @@ export default function LoginPage() {
             <label className="font-sans text-[0.68rem] tracking-[0.2em] uppercase text-white/40">
               Contraseña
             </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="••••••••"
-              className="w-full bg-white/[0.03] border border-white/[0.09] text-[#F5EDD8] font-sans text-sm px-4 py-3 outline-none focus:border-[#C4903E]/50 transition-colors placeholder:text-white/20"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="••••••••"
+                className="w-full bg-white/[0.03] border border-white/[0.09] text-[#F5EDD8] font-sans text-sm px-4 py-3 pr-11 outline-none focus:border-[#C4903E]/50 transition-colors placeholder:text-white/20"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#C4903E] transition-colors"
+              >
+                {showPassword ? (
+                  // Ojo cerrado
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
+                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                ) : (
+                  // Ojo abierto
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
 
           <button
