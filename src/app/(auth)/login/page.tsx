@@ -1,5 +1,5 @@
 "use client";
-
+// pagina para login, con campos de email y contraseña, y manejo de errores
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
