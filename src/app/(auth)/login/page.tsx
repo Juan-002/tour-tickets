@@ -45,7 +45,7 @@ export default function LoginPage() {
         <div className="mb-10 text-center">
           <a href="/" className="no-underline">
             <h1 className="font-serif text-4xl font-black text-[#F5EDD8]">
-              Tour<span className="text-[#C4903E]">Tix</span>
+             Prueba <span className="text-[#C4903E]">Tour</span>
             </h1>
           </a>
           <p className="mt-2 font-sans text-xs tracking-widest uppercase text-white/35">

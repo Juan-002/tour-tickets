@@ -53,7 +53,7 @@ export default function MyTicketsClient({ userId, userName }: MyTicketsClientPro
 
         {/* Header */}
         <header className="pt-16 pb-12">
-          <p className="text-[0.68rem] tracking-[0.25em] uppercase text-[#C4903E] font-sans mb-4">✦ Tu historial</p>
+          <p className=" pt-[30px] text-[0.68rem] tracking-[0.25em] uppercase text-[#C4903E] font-sans mb-4">✦ Tu historial</p>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-black leading-none">
               Mis <span className="italic text-[#C4903E]">tiquetes</span>

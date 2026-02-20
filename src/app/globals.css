@@ -221,8 +221,46 @@ body {
 /* ── TOURS LIST ───────────────────────────────────────────── */
 .tours-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  align-items: start; /* ← start no stretch, para que expanda libremente */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .tours-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 640px) {
+  .tours-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tour-list-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tour-list-card__footer a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Reducir padding lateral en móvil */
+  nav,
+  .page-container,
+  footer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
 .tours-empty {
@@ -238,7 +276,7 @@ body {
 .tour-list-card {
   background: rgba(22, 32, 24, 0.9);
   border: 1px solid rgba(245, 237, 216, 0.08);
-  overflow: hidden;
+  overflow: visible;
   transition: border-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -304,11 +342,11 @@ body {
 }
 
 .tour-list-card__title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #F5EDD8;
-  margin: 0;
+  /* tus estilos actuales + esto: */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .tour-list-card__desc {
@@ -316,9 +354,9 @@ body {
   color: rgba(245, 237, 216, 0.5);
   line-height: 1.65;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow: hidden;   
 }
 
 .tour-list-card__footer {

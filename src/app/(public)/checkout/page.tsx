@@ -27,7 +27,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
     >
       <div className="max-w-[1100px] mx-auto px-[60px] pb-24">
         <header className="pt-16 pb-12">
-          <p className="text-[0.68rem] tracking-[0.25em] uppercase text-[#C4903E] font-sans mb-4">
+          <p className="pt-[30px] text-[0.68rem] tracking-[0.25em] uppercase text-[#C4903E] font-sans mb-4">
             ✦ Reserva tu experiencia
           </p>
           <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-black leading-none">

@@ -7,11 +7,11 @@ export default async function ToursPage() {
   const tours = await tourService.getAvailable();
 
   return (
-    <main className="bg-mesh grain" style={{ minHeight: "100vh" }}>
+    <main className="bg-mesh grain " style={{ minHeight: "100vh" }}>
 
       {/* ── HEADER ──────────────────────────────────────────── */}
-      <header style={{ padding: "72px 60px 48px", maxWidth: 1200, margin: "0 auto" }}>
-        <p className="section-label anim-fade-up" style={{ marginBottom: 16 }}>
+      <header style={{ padding: "120px 60px 48px", maxWidth: 1200, margin: "0 auto" }}>
+        <p className="section-label anim-fade-up " style={{ marginBottom: 16 }}>
           ✦ Experiencias disponibles
         </p>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 24 }}>
