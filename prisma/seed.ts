@@ -1,3 +1,5 @@
+import bcrypt from "bcryptjs";
+
 import { PrismaClient, TourStatus } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -10,12 +12,16 @@ async function main() {
   await prisma.tour.deleteMany();
   await prisma.user.deleteMany();
 
+  const hashedPassword = await bcrypt.hash("password123", 10);
+  const hashedAdmin    = await bcrypt.hash("admin123", 10);
+
+
   // ── Usuarios ──────────────────────────────────────────────
   const admin = await prisma.user.create({
     data: {
       name:     "Admin TourTix",
       email:    "admin@tourtix.co",
-      password: "admin123", // En producción usar bcrypt
+      password: hashedAdmin,      
       role:     "ADMIN",
     },
   });
@@ -24,7 +30,7 @@ async function main() {
     data: {
       name:     "Juan García",
       email:    "juan@example.com",
-      password: "password123",
+      password: hashedPassword,   
       role:     "USER",
     },
   });
@@ -33,7 +39,7 @@ async function main() {
     data: {
       name:     "María López",
       email:    "maria@example.com",
-      password: "password123",
+      password: hashedPassword,   
       role:     "USER",
     },
   });

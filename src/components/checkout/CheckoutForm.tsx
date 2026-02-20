@@ -1,6 +1,5 @@
 "use client";
 
-// src/components/checkout/CheckoutForm.tsx
 import { useState, useEffect, useTransition } from "react";
 
 import { ITour } from "@/types";
@@ -8,6 +7,7 @@ import { ITour } from "@/types";
 interface CheckoutFormProps {
   tours: ITour[];
   preselectedTourId?: string;
+   userId:             string;
 }
 
 type Step = "form" | "confirm" | "success";
@@ -15,7 +15,7 @@ type Step = "form" | "confirm" | "success";
 // Usuario mock hasta implementar autenticación
 const MOCK_USER_ID = "user_mock_001";
 
-export default function CheckoutForm({ tours, preselectedTourId }: CheckoutFormProps) {
+export default function CheckoutForm({ tours, preselectedTourId, userId }: CheckoutFormProps) {
   const [step, setStep]           = useState<Step>("form");
   const [selectedTourId, setSelectedTourId] = useState(preselectedTourId ?? "");
   const [quantity, setQuantity]   = useState(1);
@@ -49,10 +49,9 @@ export default function CheckoutForm({ tours, preselectedTourId }: CheckoutFormP
         const res = await fetch("/api/tickets", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            tourId:   selectedTourId,
-            userId:   MOCK_USER_ID,
-            quantity,
+          body: JSON.stringify({ 
+            tourId: selectedTourId, 
+            userId, quantity 
           }),
         });
 

@@ -27,13 +27,6 @@ export default function NavbarClient({ session }: NavbarClientProps) {
   return (
     <nav className="sticky top-0 z-40 flex items-center justify-between px-[60px] py-5 bg-[rgba(13,27,15,0.95)] backdrop-blur-md border-b border-white/[0.06]">
 
-      {/* Logo */}
-      <a href="/" className="no-underline">
-        <span className="font-serif text-lg tracking-wide text-[#F5EDD8]">
-          Tour<span className="text-[#C4903E]">Tix</span>
-        </span>
-      </a>
-
       {/* Links */}
       <div className="flex gap-10">
         {links.map((link) => {

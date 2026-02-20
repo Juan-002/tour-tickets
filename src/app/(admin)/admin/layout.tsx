@@ -172,7 +172,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </button>
         </div>
 
-        <nav className="flex flex-col flex-1 gap-1 p-3">
+        {/* <nav className="flex flex-col flex-1 gap-1 p-3">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -190,7 +190,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </a>
             );
           })}
-        </nav>
+        </nav> */}
 
         <div className="p-3 border-t border-white/[0.06]">
           <button
