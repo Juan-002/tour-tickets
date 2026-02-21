@@ -110,7 +110,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Nav desktop */}
-        <nav className="flex flex-col flex-1 gap-1 p-3">
+        <nav className="flex flex-col gap-1 p-3">
           {navItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
             return (
